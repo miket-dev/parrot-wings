@@ -1,13 +1,15 @@
 # parrot-wings
 
-Папка `back` содержит ASP.NET Web API приложение, файл проекта - `back\ParrotWings.Api\Parrot.Wings.Api.sln`.
+`back` - содержит ASP.NET Web API приложение, файл проекта - `back\ParrotWings.Api\Parrot.Wings.Api.sln`.
+
+`front` содержит React приложение.
+## back
+
 Запускаемый проект `ParrotWings.Api`.
-Папка `front` содержит React приложение.
-## Создание БД
 
 После сборки `ParrotWings.Api.sln` и загрузки nuget пакетов запустить `back\ParrotWings.Api\Parrot.Wings.Api\bin\migrate.bat`. Будет использована строка подключения `PrimaryConnection`, определенная в `web.config` веб проекта.
 
-## Приложение пользовательского интерфейса
+## UI
 
 Собранная версия приложения находится в папке `front\dist`.
 
@@ -21,3 +23,6 @@ npm run build
 ```
 npm run dev
 ```
+### Config UI
+
+Адрес сервиса API задан в файле `webpack.config.js` по пути `externals.config.apiUrl`.
