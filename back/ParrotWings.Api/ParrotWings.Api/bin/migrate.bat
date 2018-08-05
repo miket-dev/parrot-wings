@@ -1,0 +1,1 @@
+migrate.exe ParrotWings.DataModel.dll /startupConfigurationFile="..\\Web.config"
