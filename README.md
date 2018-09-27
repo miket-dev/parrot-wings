@@ -3,6 +3,8 @@
 `back` - содержит ASP.NET Web API приложение, файл проекта - `back\ParrotWings.Api\Parrot.Wings.Api.sln`.
 
 `front` содержит React приложение.
+
+`front-redux-thunk-fixed` - правка проекта из папки `front` в соответствии с рекомендациями документации Redux.
 ## back
 
 Запускаемый проект `ParrotWings.Api`.
