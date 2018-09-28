@@ -7,27 +7,17 @@ import AuthenticatedApp from "./components/AuthenticatedApp";
 import configureFakeBackend from "./fake/fakeBackend";
 configureFakeBackend();
 
-class App extends React.Component {
-  componentDidMount() {
-    const { loggedIn } = this.props;
-    if (loggedIn) {
-      this.props.loadCurrentBalance();
-    }
-  }
-
-  render() {
-    const { loggedIn } = this.props;
-    return (
-      <AppWrapper>
-        {loggedIn ? <AuthenticatedApp /> : <AnonymousApp />}
-      </AppWrapper>
-    );
-  }
-}
+const App = props => {
+  const { loggedIn } = props;
+  return (
+    <AppWrapper>
+      {loggedIn ? <AuthenticatedApp /> : <AnonymousApp />}
+    </AppWrapper>
+  );
+};
 
 App.propTypes = {
-  loggedIn: PropTypes.bool,
-  loadCurrentBalance: PropTypes.func.isRequired
+  loggedIn: PropTypes.bool
 };
 
 export default App;

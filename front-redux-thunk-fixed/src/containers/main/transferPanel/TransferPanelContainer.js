@@ -3,7 +3,9 @@ import appActions from "../../../actions/appActions";
 import TransferPanel from "../../../components/main/transferPanel/TransferPanel";
 
 const mapStateToProps = state => ({
-  errorMessage: state.get("errorMessage")
+  errorMessage: state.get("errorMessage"),
+  users: state.get("users"),
+  currentBalance: state.get("currentBalance")
 });
 
 const getUsers = dispatch => () => dispatch(appActions.getUsers());

@@ -9,10 +9,10 @@ const AnonymousApp = () => (
   <div className="container-fluid">
     <ErrorContainer />
     <Switch>
-      <Route path="/login" component={LoginFormContainer} />{" "}
-      <Route path="/register" component={RegisterFormContainer} />{" "}
-      <Route path="*" component={() => <Redirect to="/login" />} />{" "}
-    </Switch>{" "}
+      <Route path="/login" component={LoginFormContainer} />
+      <Route path="/register" component={RegisterFormContainer} />
+      <Route path="*" component={() => <Redirect to="/login" />} />
+    </Switch>
   </div>
 );
 

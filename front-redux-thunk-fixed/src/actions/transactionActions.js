@@ -6,6 +6,7 @@ import transactionService from "../services/transactionService";
 
 export function currentBalance() {
   return dispatch => {
+    console.log("current balance request start");
     if (!ensure.loggedIn(true, dispatch)) {
       return;
     }
@@ -15,9 +16,11 @@ export function currentBalance() {
     transactionService
       .currentBalance(user.id)
       .then(balance => {
+        console.log("transaction service current balance ready", balance);
         dispatch(actionTypes.getBalance(balance));
       })
       .catch(error => {
+        console.log("current balance error", error);
         dispatch(actionTypes.setError(error));
       });
   };

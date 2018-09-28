@@ -11,6 +11,7 @@ function constructGetParams(params) {
 }
 
 export default function apiRequestHelper(url, verb, data) {
+  console.log("apirequest start", url);
   switch (verb) {
     case VERBS.POST: {
       const fetchOptions = {
@@ -30,14 +31,16 @@ export default function apiRequestHelper(url, verb, data) {
       });
     }
     case VERBS.GET: {
-      url = url + `?${constructGetParams(data)}`;
+      //url = url + `?${constructGetParams(data)}`;
       //eslint-disable-next-line no-undef
-      return fetch(url).then(response => {
-        if (response.status !== 200) {
-          throw new Error(response.statusText);
+      return fetch(url, { body: `?${constructGetParams(data)}` }).then(
+        response => {
+          if (response.status !== 200) {
+            throw new Error(response.statusText);
+          }
+          return response.json();
         }
-        return response.json();
-      });
+      );
     }
   }
 }

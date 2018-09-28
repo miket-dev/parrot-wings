@@ -1,8 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { TransferStep1 } from "./TransferStep1";
+import TransferStep1 from "./TransferStep1";
 import { TransferStep2 } from "./TransferStep2";
 import { TransferStep3 } from "./TransferStep3";
+import ErrorContainer from "../../../containers/error/ErrorContainer";
 import "./TransferPanel.scss";
 
 class TransferPanel extends React.Component {
@@ -15,7 +16,8 @@ class TransferPanel extends React.Component {
       verified: false,
       sent: false,
       stepIndex: 0,
-      errorString: null
+      errorString: null,
+      loaded: false
     };
   }
 
@@ -58,11 +60,18 @@ class TransferPanel extends React.Component {
 
   componentDidMount() {
     let { getUsers, restoreTransferred } = this.props;
-    getUsers();
     restoreTransferred();
+    getUsers();
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (!prevState.loaded && this.props.users.length > 0) {
+      this.setState(prevState => (prevState.loaded = true));
+    }
   }
 
   render() {
+    const { users, errorMessage } = this.props;
     const { userId, amount, stepIndex } = this.state;
     let preSelectedUserId = null;
     let preSelectedAmount = null;
@@ -75,13 +84,16 @@ class TransferPanel extends React.Component {
     let form;
     switch (stepIndex) {
       case 0: {
-        form = (
-          <TransferStep1
-            preSelectedUserId={preSelectedUserId}
-            preSelectedAmount={preSelectedAmount}
-            onSubmit={this.handleSubmit}
-          />
-        );
+        if (users) {
+          form = (
+            <TransferStep1
+              users={users}
+              preSelectedUserId={preSelectedUserId}
+              preSelectedAmount={preSelectedAmount}
+              onSubmit={this.handleSubmit}
+            />
+          );
+        }
         break;
       }
       case 1: {
@@ -111,6 +123,7 @@ class TransferPanel extends React.Component {
       <div className="col-md-9">
         <div className="profile-content">
           <h2>Transfer Parrot Wings</h2>
+          {errorMessage && <ErrorContainer message={errorMessage.toString()} />}
           {form}
         </div>
       </div>
@@ -120,7 +133,9 @@ class TransferPanel extends React.Component {
 
 TransferPanel.propTypes = {
   getUsers: PropTypes.func.isRequired,
-  restoreTransferred: PropTypes.func.isRequired
+  restoreTransferred: PropTypes.func.isRequired,
+  users: PropTypes.array,
+  errorMessage: PropTypes.any
 };
 
 export default TransferPanel;

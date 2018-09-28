@@ -4,7 +4,7 @@ import { Route, Redirect } from "react-router-dom";
 import ErrorContainer from "../containers/error/ErrorContainer";
 import UserInfoFormContainer from "../containers/main/userInfo/UserInfoFormContainer";
 import { TransactionsPanel } from "./main/transactionsPanel/TransactionsPanel";
-import { TransferPanel } from "./main/transferPanel/TransferPanel";
+import TransferPanelContainer from "../containers/main/transferPanel/TransferPanelContainer";
 import { TemplatePanel } from "./main/templatePanel/TemplatePanel";
 
 const AuthenticatedApp = () => (
@@ -14,7 +14,7 @@ const AuthenticatedApp = () => (
       <UserInfoFormContainer />
       <Switch>
         <Route exact path="/" component={TransactionsPanel} />
-        <Route exact path="/transfer" component={TransferPanel} />
+        <Route exact path="/transfer" component={TransferPanelContainer} />
         <Route exact path="/templates" component={TemplatePanel} />
         <Route path="*" component={() => <Redirect to="/" />} />
       </Switch>

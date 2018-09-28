@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { connect } from "react-redux";
 import ErrorContainer from "../../../containers/error/ErrorContainer";
 import AutocompleteSelect from "../../controls/autocompleteSelect";
 
@@ -94,13 +93,4 @@ TransferStep1.propTypes = {
   onSubmit: PropTypes.func.isRequired
 };
 
-const mapStateToProps = state => {
-  return {
-    users: state.get("users"),
-    currentBalance: state.get("currentBalance")
-  };
-};
-
-const connectedStep1 = connect(mapStateToProps)(TransferStep1);
-
-export { connectedStep1 as TransferStep1 };
+export default TransferStep1;

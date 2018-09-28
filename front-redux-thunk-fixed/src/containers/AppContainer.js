@@ -1,22 +1,10 @@
 import { connect } from "react-redux";
-import appActions from "../actions/appActions";
 import App from "../App";
 
 const mapStateToProps = state => ({
   loggedIn: state.get("loggedIn")
 });
 
-const mapDispatchToProps = dispatch => {
-  return {
-    loadCurrentBalance: () => {
-      dispatch(appActions.currentBalance());
-    }
-  };
-};
-
-const AppContainer = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(App);
+const AppContainer = connect(mapStateToProps)(App);
 
 export default AppContainer;

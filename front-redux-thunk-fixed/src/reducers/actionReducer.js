@@ -17,6 +17,7 @@ const initialState = Map({
 });
 
 export default function actionReducer(state = initialState, action) {
+  console.log("action", action);
   switch (action.type) {
     case actionConstants.SET_AUTH: {
       return state.set("loggedIn", action.isLoggedIn);

@@ -1,3 +1,4 @@
+/* eslint-disable */
 function fakeLogin(opts) {
   let { username } = opts.body;
   return {
@@ -82,6 +83,7 @@ function configureFakeBackend() {
   window.fetch = function(url, opts) {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
+        console.log("fake fetch executing", `url: ${url}`);
         if (url.endsWith("/login") && opts.method === "POST") {
           resolve({
             ok: true,
@@ -92,6 +94,7 @@ function configureFakeBackend() {
         }
 
         if (url.endsWith("/balance") && opts.method === "GET") {
+          console.log("executing fake balance");
           resolve({
             ok: true,
             status: 200,
@@ -140,12 +143,20 @@ function configureFakeBackend() {
           resolve({
             ok: true,
             status: 200,
-            json: () => Promise.resolve({ id: 5, toUserId: 1, amount: 20 })
+            json: () =>
+              Promise.resolve({
+                id: 5,
+                toUserId: 1,
+                amount: 20
+              })
           });
           return;
         }
 
-        realFetch(url, opts).then(response => reject(response));
+        resolve({
+          ok: false,
+          status: 500
+        });
       }, 500);
     });
   };
