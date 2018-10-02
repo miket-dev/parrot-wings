@@ -4,7 +4,9 @@
 
 `front` содержит React приложение.
 
-`front-redux-thunk-fixed` - правка проекта из папки `front` в соответствии с рекомендациями документации Redux.
+~~`front-redux-thunk-fixed` - правка проекта из папки `front` в соответствии с рекомендациями документации Redux .~~
+
+`front-redux-saga` - тот же самый проект на Redux + Saga
 ## back
 
 Запускаемый проект `ParrotWings.Api`.

@@ -4,14 +4,22 @@ import AppWrapper from "./components/AppWrapper";
 import AnonymousApp from "./components/AnonymousApp";
 import AuthenticatedApp from "./components/AuthenticatedApp";
 
-import configureFakeBackend from "./fake/fakeBackend";
-configureFakeBackend();
+// import configureFakeBackend from "./fake/fakeBackend";
+// configureFakeBackend();
 
 const App = props => {
   const { loggedIn } = props;
+  if (loggedIn) {
+    return (
+      <AppWrapper>
+        <AuthenticatedApp />
+      </AppWrapper>
+    );
+  }
+
   return (
     <AppWrapper>
-      {loggedIn ? <AuthenticatedApp /> : <AnonymousApp />}
+      <AnonymousApp />
     </AppWrapper>
   );
 };

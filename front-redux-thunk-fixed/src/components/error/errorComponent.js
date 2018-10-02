@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const ErrorComponent = props =>
-  !(props.errorMessage || props.message) ? (
+  !(props.errorMessage === null || props.message) ? (
     <div>
       <span
         style={{
@@ -21,6 +21,10 @@ const ErrorComponent = props =>
 ErrorComponent.propTypes = {
   errorMessage: PropTypes.any,
   message: PropTypes.string
+};
+
+ErrorComponent.prototype.componentDidUpdate = function() {
+  console.log("error did update");
 };
 
 export default ErrorComponent;
