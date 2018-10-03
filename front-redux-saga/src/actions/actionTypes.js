@@ -4,7 +4,8 @@ const SUCCESS = "SUCCESS";
 const FAILURE = "FAILURE";
 
 //special
-const LOGIN = "LOGIN";
+const LOGIN_STARTED = "LOGIN_STARTED";
+const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 const LOGOUT = "LOGOUT";
 const REGISTER = "REGISTER";
 
@@ -15,7 +16,12 @@ const requestTypesFactory = base => extra =>
   }, {});
 
 const actionTypes = {
-  USER: requestTypesFactory("USER")([LOGOUT, LOGIN, REGISTER]),
+  USER: requestTypesFactory("USER")([
+    LOGOUT,
+    LOGIN_STARTED,
+    LOGIN_SUCCESS,
+    REGISTER
+  ]),
   TRANSACTION: requestTypesFactory("TRANSACTION")([]),
   TEMPLATE: requestTypesFactory("TEMPLATE")([])
 };

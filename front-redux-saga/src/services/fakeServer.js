@@ -1,6 +1,10 @@
 /* eslint-disable no-undef */
-const login = username =>
-  new Promise(resolve => resolve({ login: true, username, id: 1 }));
+const login = username => {
+  if (username === "qq@qq") {
+    throw new Error("invalid username");
+  }
+  return new Promise(resolve => resolve({ login: true, username, id: 1 }));
+};
 
 const logout = () => new Promise(resolve => resolve({ logout: true }));
 

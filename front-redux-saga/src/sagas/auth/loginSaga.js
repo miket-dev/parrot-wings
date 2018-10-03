@@ -8,22 +8,21 @@ function* loginSaga() {
   //marking that this saga could be repeatable
   while (true) {
     //waiting for login request
-    const request = yield take(actionTypes.USER.LOGIN);
+    const request = yield take(actionTypes.USER.LOGIN_STARTED);
 
     yield put(userActions.request());
-
     try {
-      const { username, password } = request.data;
+      const { username, password } = request;
+
       const loginResult = yield call(() =>
         userService.login(username, password)
       );
 
       yield put(userActions.requestSuccess());
-
       window.localStorage.setItem("username", username); //eslint-disable-line no-undef
-      yield put(userActions.login(loginResult.login));
+      yield put(userActions.loginSuccess(loginResult.login));
     } catch (error) {
-      yield put(userActions.requestFailed(error));
+      yield put(userActions.requestFailed({ error }));
     }
   }
 }
