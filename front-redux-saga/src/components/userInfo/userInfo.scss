@@ -1,0 +1,60 @@
+.profile {
+    margin: 20px 0;
+  }
+  
+  .profile-sidebar {
+    padding: 20px 0 10px 0;
+    background: #fff;
+  }
+  
+  .profile-usertitle {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .profile-usertitle-name {
+    color: #5a7391;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 7px;
+  }
+  
+  .profile-usertitle-job {
+    text-transform: uppercase;
+    color: #5b9bd1;
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 15px;
+  }
+  
+  .profile-usermenu {
+    margin-top: 30px;
+    ul li {
+      border-bottom: 1px solid #f0f4f7;
+      a {
+        display: block;
+        padding: 10px;
+        color: #93a3b5;
+        font-size: 14px;
+        font-weight: 400;
+      }
+      &:last-child {
+        border-bottom: none;
+      }
+      &:hover {
+        background-color: #fafcfd;
+        color: #5b9bd1;
+      }
+      &.active {
+        border-bottom: none;
+        a {
+          padding: 10px;
+          color: #5b9bd1;
+          background-color: #f6f9fb;
+          border-left: 2px solid #5b9bd1;
+          margin-left: -2px;
+        }
+      }
+    }
+  }
+  

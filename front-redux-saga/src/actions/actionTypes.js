@@ -3,11 +3,16 @@ const REQUEST = "REQUEST";
 const SUCCESS = "SUCCESS";
 const FAILURE = "FAILURE";
 
-//special
+//user special
 const LOGIN_STARTED = "LOGIN_STARTED";
 const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 const LOGOUT = "LOGOUT";
-const REGISTER = "REGISTER";
+const REGISTER_STARTED = "REGISTER_STARTED";
+const REGISTER_SUCCESS = "REGISTER_SUCCESS";
+
+//transactions special
+const CURRENT_BALANCE_STARTED = "CURRENT_BALANCE_STARTED";
+const CURRENT_BALANCE_SUCCESS = "CURRENT_BALANCE_SUCCESS";
 
 const requestTypesFactory = base => extra =>
   [REQUEST, SUCCESS, FAILURE, ...extra].reduce((acc, type) => {
@@ -20,9 +25,13 @@ const actionTypes = {
     LOGOUT,
     LOGIN_STARTED,
     LOGIN_SUCCESS,
-    REGISTER
+    REGISTER_STARTED,
+    REGISTER_SUCCESS
   ]),
-  TRANSACTION: requestTypesFactory("TRANSACTION")([]),
+  TRANSACTION: requestTypesFactory("TRANSACTION")([
+    CURRENT_BALANCE_STARTED,
+    CURRENT_BALANCE_SUCCESS
+  ]),
   TEMPLATE: requestTypesFactory("TEMPLATE")([])
 };
 

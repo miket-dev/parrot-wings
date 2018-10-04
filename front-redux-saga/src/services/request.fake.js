@@ -18,6 +18,10 @@ const get = function(url, data) {
   if (url.endsWith("logout")) {
     return fakeServer.logout();
   }
+
+  if (url.endsWith("current")) {
+    return fakeServer.currentBalance();
+  }
 };
 
 const fakeRequest = {

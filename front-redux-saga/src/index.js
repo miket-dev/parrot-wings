@@ -1,16 +1,15 @@
 import "../scss/main.scss";
 import React from "react";
 import { Provider } from "react-redux";
-// import { Provider } from "react-redux";
 import ReactDOM from "react-dom";
-import { Store } from "./store";
+import { Store, History } from "./store";
 import { AppContainer } from "./containers/AppContainer";
-import { BrowserRouter as Router } from "react-router-dom";
+import { ConnectedRouter as Router } from "connected-react-router";
 import "../scss/main.scss";
 
 ReactDOM.render(
   <Provider store={Store}>
-    <Router>
+    <Router history={History}>
       <AppContainer />
     </Router>
   </Provider>,

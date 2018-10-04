@@ -19,10 +19,11 @@ function* loginSaga() {
       );
 
       yield put(userActions.requestSuccess());
+      window.localStorage.setItem("userId", loginResult.login.userId); //eslint-disable-line no-undef
       window.localStorage.setItem("username", username); //eslint-disable-line no-undef
       yield put(userActions.loginSuccess(loginResult.login));
     } catch (error) {
-      yield put(userActions.requestFailed({ error }));
+      yield put(userActions.requestFailed(error));
     }
   }
 }

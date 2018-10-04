@@ -1,12 +1,13 @@
 import { Map } from "immutable";
 import actionTypes from "../actions/actionTypes";
 import userService from "../services/userService";
+import { LOCATION_CHANGE } from "connected-react-router";
 
-let userId = Number(userService.currentUserId());
+let user = userService.currentUser();
 const userInitialState = new Map({
-  loggedIn: !isNaN(userId) && userId !== 0,
-  userId: isNaN(userId) || userId === 0 ? -1 : userId,
-  username: null,
+  loggedIn: !!user.id,
+  userId: user.id || -1,
+  username: user.username,
   loading: false,
   error: null,
   users: []
@@ -35,11 +36,14 @@ function userReducer(state = userInitialState, action) {
         .set("username", null)
         .set("userId", -1);
     }
-    case actionTypes.USER.REGISTER: {
+    case actionTypes.USER.REGISTER_SUCCESS: {
       return state
         .set("loggedIn", true)
-        .set("username", action.register.name)
-        .set("userId", action.register.id);
+        .set("username", action.username)
+        .set("userId", action.id);
+    }
+    case LOCATION_CHANGE: {
+      return state.set("error", null);
     }
   }
 

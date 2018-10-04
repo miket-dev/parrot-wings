@@ -9,13 +9,16 @@ const register = (username, email, password) =>
 
 const logout = () => request.get(`${config.apiUrl}/user/logout`);
 
-const currentUserId = () => window.localStorage.getItem("userId");
+const currentUser = () => ({
+  id: window.localStorage.getItem("userId"),
+  username: window.localStorage.getItem("username")
+});
 
 const userService = {
   login,
   register,
   logout,
-  currentUserId
+  currentUser
 };
 
 export default userService;
