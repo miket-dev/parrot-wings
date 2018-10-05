@@ -18,12 +18,19 @@ const currentBalanceSuccess = balanceSuccess =>
     balanceSuccess
   );
 
+const listRequest = listRequest =>
+  actionCreator(actionTypes.TRANSACTION.LIST_REQUEST, listRequest);
+const listSuccess = listSuccess =>
+  actionCreator(actionTypes.TRANSACTION.LIST_SUCCESS, listSuccess);
+
 const transaction = {
   request,
   requestSuccess,
   requestFailed,
   currentBalanceStarted,
-  currentBalanceSuccess
+  currentBalanceSuccess,
+  listRequest,
+  listSuccess
 };
 
 export default transaction;

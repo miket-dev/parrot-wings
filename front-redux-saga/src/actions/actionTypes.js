@@ -13,6 +13,8 @@ const REGISTER_SUCCESS = "REGISTER_SUCCESS";
 //transactions special
 const CURRENT_BALANCE_STARTED = "CURRENT_BALANCE_STARTED";
 const CURRENT_BALANCE_SUCCESS = "CURRENT_BALANCE_SUCCESS";
+const LIST_REQUEST = "LIST_REQUEST";
+const LIST_SUCCESS = "LIST_SUCCESS";
 
 const requestTypesFactory = base => extra =>
   [REQUEST, SUCCESS, FAILURE, ...extra].reduce((acc, type) => {
@@ -30,7 +32,9 @@ const actionTypes = {
   ]),
   TRANSACTION: requestTypesFactory("TRANSACTION")([
     CURRENT_BALANCE_STARTED,
-    CURRENT_BALANCE_SUCCESS
+    CURRENT_BALANCE_SUCCESS,
+    LIST_REQUEST,
+    LIST_SUCCESS
   ]),
   TEMPLATE: requestTypesFactory("TEMPLATE")([])
 };

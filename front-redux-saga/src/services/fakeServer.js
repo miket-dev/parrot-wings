@@ -32,10 +32,15 @@ const currentBalance = userId => {
   return new Promise(resolve => withTimeout(resolve, 500));
 };
 
+const transactions = () => {
+  return new Promise(resolve => withTimeout(resolve, []));
+};
+
 const fakeServer = {
   login,
   logout,
   register,
-  currentBalance
+  currentBalance,
+  transactions
 };
 export default fakeServer;

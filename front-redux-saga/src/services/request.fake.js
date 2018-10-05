@@ -22,6 +22,10 @@ const get = function(url, data) {
   if (url.endsWith("current")) {
     return fakeServer.currentBalance();
   }
+
+  if (url.endsWith("list")) {
+    return fakeServer.transactions();
+  }
 };
 
 const fakeRequest = {
