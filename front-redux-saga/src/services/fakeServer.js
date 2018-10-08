@@ -32,8 +32,25 @@ const currentBalance = userId => {
   return new Promise(resolve => withTimeout(resolve, 500));
 };
 
+const createTransaction = (id, username, type, amount, resource, date) => ({
+  id,
+  user: {
+    name: username
+  },
+  type,
+  amount,
+  resource,
+  date
+});
+
 const transactions = () => {
-  return new Promise(resolve => withTimeout(resolve, []));
+  return new Promise(resolve =>
+    withTimeout(resolve, [
+      createTransaction(1, "Darth Vader", "Credit", 130, 470, new Date()),
+      createTransaction(2, "Clark Kent", "Debit", 240, 670, new Date()),
+      createTransaction(3, "Bruce Wayne", "Credit", 210, 350, new Date())
+    ])
+  );
 };
 
 const fakeServer = {

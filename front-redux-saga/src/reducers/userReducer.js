@@ -42,6 +42,9 @@ function userReducer(state = userInitialState, action) {
         .set("username", action.username)
         .set("userId", action.id);
     }
+    case actionTypes.USER.LIST_SUCCESS: {
+      return state.set("users", action.users);
+    }
     case LOCATION_CHANGE: {
       return state.set("error", null);
     }

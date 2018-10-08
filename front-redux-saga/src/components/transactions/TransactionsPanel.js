@@ -23,10 +23,6 @@ class TransactionsPanel extends React.Component {
     requestTransactions(userId);
   }
 
-  shouldComponentUpdate(nextProps) {
-    return this.props.transactions.length < nextProps.transactions.length;
-  }
-
   sortBy = fieldName => {
     let { sorts } = this.state;
 

@@ -2,6 +2,8 @@
 const REQUEST = "REQUEST";
 const SUCCESS = "SUCCESS";
 const FAILURE = "FAILURE";
+const LIST_REQUEST = "LIST_REQUEST";
+const LIST_SUCCESS = "LIST_SUCCESS";
 
 //user special
 const LOGIN_STARTED = "LOGIN_STARTED";
@@ -13,14 +15,17 @@ const REGISTER_SUCCESS = "REGISTER_SUCCESS";
 //transactions special
 const CURRENT_BALANCE_STARTED = "CURRENT_BALANCE_STARTED";
 const CURRENT_BALANCE_SUCCESS = "CURRENT_BALANCE_SUCCESS";
-const LIST_REQUEST = "LIST_REQUEST";
-const LIST_SUCCESS = "LIST_SUCCESS";
+const TRANSFER_STARTED = "TRANSFER_STARTED";
+const TRANSFER_SUCCESS = "TRANSFER_SUCCESS";
 
 const requestTypesFactory = base => extra =>
-  [REQUEST, SUCCESS, FAILURE, ...extra].reduce((acc, type) => {
-    acc[type] = `${base}_${type}`;
-    return acc;
-  }, {});
+  [REQUEST, SUCCESS, FAILURE, LIST_REQUEST, LIST_SUCCESS, ...extra].reduce(
+    (acc, type) => {
+      acc[type] = `${base}_${type}`;
+      return acc;
+    },
+    {}
+  );
 
 const actionTypes = {
   USER: requestTypesFactory("USER")([
@@ -33,8 +38,8 @@ const actionTypes = {
   TRANSACTION: requestTypesFactory("TRANSACTION")([
     CURRENT_BALANCE_STARTED,
     CURRENT_BALANCE_SUCCESS,
-    LIST_REQUEST,
-    LIST_SUCCESS
+    TRANSFER_STARTED,
+    TRANSFER_SUCCESS
   ]),
   TEMPLATE: requestTypesFactory("TEMPLATE")([])
 };

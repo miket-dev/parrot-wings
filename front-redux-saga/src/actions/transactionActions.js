@@ -23,6 +23,11 @@ const listRequest = listRequest =>
 const listSuccess = listSuccess =>
   actionCreator(actionTypes.TRANSACTION.LIST_SUCCESS, listSuccess);
 
+const transferRequest = transferRequest =>
+  actionCreator(actionTypes.TRANSACTION.TRANSFER_STARTED, transferRequest);
+const transferSuccess = transferSuccess =>
+  actionCreator(actionTypes.TRANSACTION.TRANSFER_SUCCESS, transferSuccess);
+
 const transaction = {
   request,
   requestSuccess,
@@ -30,7 +35,9 @@ const transaction = {
   currentBalanceStarted,
   currentBalanceSuccess,
   listRequest,
-  listSuccess
+  listSuccess,
+  transferRequest,
+  transferSuccess
 };
 
 export default transaction;

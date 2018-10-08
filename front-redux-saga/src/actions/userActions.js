@@ -19,6 +19,11 @@ const registerStarted = register =>
 const registerSuccess = register =>
   actionCreator(actionTypes.USER.REGISTER_SUCCESS, register);
 
+const listRequest = listRequest =>
+  actionCreator(actionTypes.USER.LIST_REQUEST, listRequest);
+const listSuccess = listSuccess =>
+  actionCreator(actionTypes.USER.LIST_SUCCESS, listSuccess);
+
 const user = {
   request,
   requestSuccess,
@@ -27,7 +32,9 @@ const user = {
   registerSuccess,
   loginStarted,
   loginSuccess,
-  logout
+  logout,
+  listRequest,
+  listSuccess
 };
 
 export default user;

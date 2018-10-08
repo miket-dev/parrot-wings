@@ -1,10 +1,12 @@
 import { Map } from "immutable";
 import actionTypes from "../actions/actionTypes";
+import transferredValues from "../constants/transferredValues";
 import { LOCATION_CHANGE } from "connected-react-router";
 
 const transactionInitialState = new Map({
   currentBalance: null,
   transactions: [],
+  transactionStatus: transferredValues.NOT_STARTED,
   loading: false,
   error: null
 });
@@ -25,6 +27,11 @@ function transactionReducer(state = transactionInitialState, action) {
     }
     case actionTypes.TRANSACTION.LIST_SUCCESS: {
       return state.set("transactions", action.transactions);
+    }
+    case actionTypes.TRANSACTION.TRANSFER_SUCCESS: {
+      return state
+        .set("currentBalance", state.currentBalance - action.amount)
+        .set("transactionStatus", transferredValues.SUCCESS);
     }
     case LOCATION_CHANGE: {
       return state.set("error", null);
