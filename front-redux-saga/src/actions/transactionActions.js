@@ -28,6 +28,9 @@ const transferRequest = transferRequest =>
 const transferSuccess = transferSuccess =>
   actionCreator(actionTypes.TRANSACTION.TRANSFER_SUCCESS, transferSuccess);
 
+const appendTransaction = append =>
+  actionCreator(actionTypes.TRANSACTION.APPEND, append);
+
 const transaction = {
   request,
   requestSuccess,
@@ -37,7 +40,8 @@ const transaction = {
   listRequest,
   listSuccess,
   transferRequest,
-  transferSuccess
+  transferSuccess,
+  appendTransaction
 };
 
 export default transaction;

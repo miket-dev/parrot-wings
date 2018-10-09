@@ -5,6 +5,9 @@ import registerSaga from "./auth/registerSaga";
 import logoutSaga from "./auth/logoutSaga";
 import currentBalanceSaga from "./transaction/currentBalanceSaga";
 import listRequestSaga from "./transaction/listRequestSaga";
+import userListSaga from "./user/userListSaga";
+import transferSaga from "./transaction/transferSaga";
+import newTransactionSaga from "./transaction/newTransactionSaga";
 
 export function* rootSaga() {
   yield all([
@@ -12,6 +15,9 @@ export function* rootSaga() {
     registerSaga(),
     logoutSaga(),
     currentBalanceSaga(),
-    listRequestSaga()
+    listRequestSaga(),
+    userListSaga(),
+    transferSaga(),
+    newTransactionSaga()
   ]);
 }

@@ -7,9 +7,17 @@ const currentBalance = userId =>
 const transactions = userId =>
   request.get(`${config.apiUrl}/transaction/list`, { userId });
 
+const transfer = (userIdFrom, userIdTo, amount) =>
+  request.post(`${config.apiUrl}/transaction/transfer`, {
+    userIdFrom,
+    userIdTo,
+    amount
+  });
+
 const transactionService = {
   currentBalance,
-  transactions
+  transactions,
+  transfer
 };
 
 export default transactionService;

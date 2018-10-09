@@ -28,9 +28,17 @@ function transactionReducer(state = transactionInitialState, action) {
     case actionTypes.TRANSACTION.LIST_SUCCESS: {
       return state.set("transactions", action.transactions);
     }
+    case actionTypes.TRANSACTION.APPEND: {
+      return state.updateIn(["transactions"], arr => {
+        return arr.concat(action.transaction);
+      });
+    }
+    case actionTypes.TRANSACTION.TRANSFER_STARTED: {
+      return state.set("transactionStatus", transferredValues.NOT_STARTED);
+    }
     case actionTypes.TRANSACTION.TRANSFER_SUCCESS: {
       return state
-        .set("currentBalance", state.currentBalance - action.amount)
+        .set("currentBalance", state.get("currentBalance") - action.amount)
         .set("transactionStatus", transferredValues.SUCCESS);
     }
     case LOCATION_CHANGE: {

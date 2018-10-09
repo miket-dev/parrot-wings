@@ -10,6 +10,10 @@ const post = function(url, data) {
     return fakeServer.register(data.username, data.email, data.password);
   }
 
+  if (url.endsWith("transfer")) {
+    return fakeServer.transfer(data.userIdFrom, data.userIdTo, data.amount);
+  }
+
   throw new Error("unknown request");
 };
 
@@ -23,8 +27,12 @@ const get = function(url, data) {
     return fakeServer.currentBalance();
   }
 
-  if (url.endsWith("list")) {
+  if (url.endsWith("transaction/list")) {
     return fakeServer.transactions();
+  }
+
+  if (url.endsWith("user/list")) {
+    return fakeServer.users();
   }
 };
 

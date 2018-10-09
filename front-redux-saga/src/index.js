@@ -6,6 +6,7 @@ import { Store, History } from "./store";
 import { AppContainer } from "./containers/AppContainer";
 import { ConnectedRouter as Router } from "connected-react-router";
 import "../scss/main.scss";
+import "../external/bootstrap.min.css";
 
 ReactDOM.render(
   <Provider store={Store}>

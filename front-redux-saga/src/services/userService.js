@@ -14,11 +14,15 @@ const currentUser = () => ({
   username: window.localStorage.getItem("username")
 });
 
+const userList = userId =>
+  request.get(`${config.apiUrl}/user/list`, { userId });
+
 const userService = {
   login,
   register,
   logout,
-  currentUser
+  currentUser,
+  userList
 };
 
 export default userService;

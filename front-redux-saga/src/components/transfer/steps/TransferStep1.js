@@ -13,27 +13,27 @@ class TransferStep1 extends React.Component {
   handleSubmit = e => {
     let { userId, amount } = e.target;
     const { currentBalance, onSubmit } = this.props;
-    if (amount > currentBalance) {
+    if (amount.value > currentBalance) {
       this.setState(
         prevState =>
           (prevState.errorString =
             "Amount has to be lower than current user balance")
       );
-    } else if (amount <= 0) {
+    } else if (amount.value <= 0) {
       this.setState(
         prevState => (prevState.errorString = "Amount has to be greater than 0")
       );
-    } else if (!userId || isNaN(Number(userId))) {
+    } else if (!userId.value || isNaN(Number(userId.value))) {
       this.setState(prevState => (prevState.errorString = "Select the user"));
     } else {
       this.setState(prevState => {
-        prevState.userId = Number(userId);
-        prevState.amount = Number(amount);
+        prevState.userId = Number(userId.value);
+        prevState.amount = Number(amount.value);
         prevState.errorString = null;
         return prevState;
       });
 
-      onSubmit({ userId, amount });
+      onSubmit({ userId: userId.value, amount: amount.value });
     }
 
     e.preventDefault();

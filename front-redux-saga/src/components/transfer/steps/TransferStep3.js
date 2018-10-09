@@ -21,9 +21,22 @@ class TransferStep3 extends React.Component {
     this.setState(prevState => (prevState.redirect = true));
   };
 
-  //   componentDidMount() {
-  //     const { userId, amount, dispatch } = this.props;
-  //   }
+  componentDidMount() {
+    const { userId, amount, initTransfer } = this.props;
+    initTransfer(userId, amount);
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    if (
+      nextProps.transferred === transferredValues.SUCCESS &&
+      !nextState.redirect
+    ) {
+      this.setState(prevState => (prevState.redirect = true));
+      return false;
+    }
+
+    return true;
+  }
 
   render() {
     const { redirect } = this.state;
@@ -74,6 +87,7 @@ TransferStep3.propTypes = {
   amount: PropTypes.number.isRequired,
   onSubmit: PropTypes.func.isRequired,
   transferred: PropTypes.number.isRequired,
+  initTransfer: PropTypes.func.isRequired,
   error: PropTypes.any
 };
 

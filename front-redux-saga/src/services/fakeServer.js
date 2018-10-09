@@ -28,6 +28,11 @@ const register = (username, email, password) => {
 };
 
 //eslint-disable-next-line no-unused-vars
+const transfer = (userIdFrom, userIdTo, amount) => {
+  return new Promise(resolve => withTimeout(resolve, { status: true }));
+};
+
+//eslint-disable-next-line no-unused-vars
 const currentBalance = userId => {
   return new Promise(resolve => withTimeout(resolve, 500));
 };
@@ -53,11 +58,23 @@ const transactions = () => {
   );
 };
 
+const users = () => {
+  return new Promise(resolve =>
+    withTimeout(resolve, [
+      { id: 1, name: "Darth Vader" },
+      { id: 2, name: "Clark Kent" },
+      { id: 3, name: "Bruce Wayne" }
+    ])
+  );
+};
+
 const fakeServer = {
   login,
   logout,
   register,
   currentBalance,
-  transactions
+  transactions,
+  users,
+  transfer
 };
 export default fakeServer;

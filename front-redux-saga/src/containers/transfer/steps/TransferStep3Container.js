@@ -8,7 +8,7 @@ const initTransfer = dispatch => (userToId, amount) =>
 const TransferStep3Container = connect(
   state => ({
     users: state.user.get("users"),
-    transferred: state.transaction.get("transferred"),
+    transferred: state.transaction.get("transactionStatus"),
     error: state.transaction.get("error")
   }),
   dispatch => ({
