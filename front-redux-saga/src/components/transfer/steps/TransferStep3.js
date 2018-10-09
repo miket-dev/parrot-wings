@@ -1,20 +1,18 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import transferredValues from "../../../constants/transferredValues";
 import ErrorComponent from "../../utils/ErrorComponent";
 
 class TransferStep3 extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = { redirect: false };
-  }
-
   handleSubmit = e => {
     const { onSubmit } = this.props;
     onSubmit();
     e.preventDefault();
+  };
+
+  goBack = () => {
+    this.setState(prevState => (prevState.redirect = true));
   };
 
   saveAsTemplate = () => {
@@ -26,24 +24,7 @@ class TransferStep3 extends React.Component {
     initTransfer(userId, amount);
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
-    if (
-      nextProps.transferred === transferredValues.SUCCESS &&
-      !nextState.redirect
-    ) {
-      this.setState(prevState => (prevState.redirect = true));
-      return false;
-    }
-
-    return true;
-  }
-
   render() {
-    const { redirect } = this.state;
-    if (redirect) {
-      return <Redirect to="/templates" />;
-    }
-
     const { users, userId, amount, transferred, error } = this.props;
 
     let username = users.filter(x => x.id === userId)[0].name;
@@ -74,6 +55,16 @@ class TransferStep3 extends React.Component {
             >
               Save as template
             </button>
+            <Link
+              to="/"
+              className="btn btn-default"
+              style={{
+                display:
+                  transferred !== transferredValues.SUCCESS ? "none" : "block"
+              }}
+            >
+              Back to List
+            </Link>
           </div>
         </form>
       </div>
