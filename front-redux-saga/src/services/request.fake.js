@@ -14,6 +14,10 @@ const post = function(url, data) {
     return fakeServer.transfer(data.userIdFrom, data.userIdTo, data.amount);
   }
 
+  if (url.endsWith("/templates/save")) {
+    return fakeServer.setTemplate(data.userIdTo, data.amount);
+  }
+
   throw new Error("unknown request");
 };
 
@@ -33,6 +37,10 @@ const get = function(url, data) {
 
   if (url.endsWith("user/list")) {
     return fakeServer.users();
+  }
+
+  if (url.endsWith("templates/list")) {
+    return fakeServer.templates();
   }
 };
 

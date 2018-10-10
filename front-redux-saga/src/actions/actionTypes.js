@@ -19,6 +19,10 @@ const TRANSFER_STARTED = "TRANSFER_STARTED";
 const TRANSFER_SUCCESS = "TRANSFER_SUCCESS";
 const APPEND = "APPEND";
 
+//template special
+const SET_TEMPLATE_STARTED = "SET_TEMPLATE_STARTED";
+const SET_TEMPLATE_SUCCESS = "SET_TEMPLATE_SUCCESS";
+
 const requestTypesFactory = base => extra =>
   [REQUEST, SUCCESS, FAILURE, LIST_REQUEST, LIST_SUCCESS, ...extra].reduce(
     (acc, type) => {
@@ -43,7 +47,10 @@ const actionTypes = {
     TRANSFER_SUCCESS,
     APPEND
   ]),
-  TEMPLATE: requestTypesFactory("TEMPLATE")([])
+  TEMPLATE: requestTypesFactory("TEMPLATE")([
+    SET_TEMPLATE_STARTED,
+    SET_TEMPLATE_SUCCESS
+  ])
 };
 
 export default actionTypes;

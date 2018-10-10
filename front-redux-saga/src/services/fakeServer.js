@@ -68,6 +68,29 @@ const users = () => {
   );
 };
 
+const createTemplate = (id, userToId, userToName, amount) => ({
+  id,
+  userTo: {
+    id: userToId,
+    name: userToName
+  },
+  amount
+});
+
+const templates = () => {
+  return new Promise(resolve =>
+    withTimeout(resolve, [
+      createTemplate(1, 1, "Darth Vader", 122),
+      createTemplate(2, 2, "Clark Kent", 240),
+      createTemplate(3, 3, "Bruce Wayne", 210)
+    ])
+  );
+};
+
+const setTemplate = (userToId, amount) => {
+  return new Promise(resolve => withTimeout(resolve, { userToId, amount }));
+};
+
 const fakeServer = {
   login,
   logout,
@@ -75,6 +98,8 @@ const fakeServer = {
   currentBalance,
   transactions,
   users,
-  transfer
+  transfer,
+  templates,
+  setTemplate
 };
 export default fakeServer;

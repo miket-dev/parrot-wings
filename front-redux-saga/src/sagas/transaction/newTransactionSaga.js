@@ -4,6 +4,7 @@ import transactionActions from "../../actions/transactionActions";
 import transactionService from "../../services/transactionService";
 import { put, takeEvery, call, select, all } from "redux-saga/effects";
 import userService from "../../services/userService";
+import config from "config";
 
 function* newTransactionFlow(requestData) {
   yield put(transactionActions.request());
@@ -23,21 +24,22 @@ function* newTransactionFlow(requestData) {
       state.transaction.get("currentBalance")
     );
 
-    console.log("MYLOG!", requestData);
-    const transaction = {
-      transaction: {
-        id: transactions.reduce((acc, x) => (acc > x.id ? acc : x.id), 0) + 1,
-        user: {
-          name: users.filter(x => x.id === requestData.userToId)[0].name
-        },
-        type: "Credit",
-        amount: requestData.amount,
-        resource: currentBalance,
-        date: new Date()
-      }
-    };
+    if (config.fakeRequest) {
+      const transaction = {
+        transaction: {
+          id: transactions.reduce((acc, x) => (acc > x.id ? acc : x.id), 0) + 1,
+          user: {
+            name: users.filter(x => x.id === requestData.userToId)[0].name
+          },
+          type: "Credit",
+          amount: requestData.amount,
+          resource: currentBalance,
+          date: new Date()
+        }
+      };
 
-    yield put(transactionActions.appendTransaction(transaction));
+      yield put(transactionActions.appendTransaction(transaction));
+    }
 
     yield put(transactionActions.requestSuccess());
   } catch (e) {

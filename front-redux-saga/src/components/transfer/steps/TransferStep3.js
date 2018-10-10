@@ -3,20 +3,26 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import transferredValues from "../../../constants/transferredValues";
 import ErrorComponent from "../../utils/ErrorComponent";
+import Redirect from "react-router-dom/Redirect";
 
 class TransferStep3 extends React.Component {
+  constructor(props, context) {
+    super(props, context);
+    this.state = { templateSaved: false };
+  }
+
   handleSubmit = e => {
     const { onSubmit } = this.props;
     onSubmit();
     e.preventDefault();
   };
 
-  goBack = () => {
-    this.setState(prevState => (prevState.redirect = true));
-  };
-
   saveAsTemplate = () => {
-    this.setState(prevState => (prevState.redirect = true));
+    const { saveTemplate, userId, amount } = this.props;
+
+    saveTemplate(userId, amount);
+
+    this.setState(prevState => (prevState.templateSaved = true));
   };
 
   componentDidMount() {
@@ -25,7 +31,12 @@ class TransferStep3 extends React.Component {
   }
 
   render() {
+    const { templateSaved } = this.state;
     const { users, userId, amount, transferred, error } = this.props;
+
+    if (templateSaved) {
+      return <Redirect to="/templates" />;
+    }
 
     let username = users.filter(x => x.id === userId)[0].name;
 
@@ -79,6 +90,7 @@ TransferStep3.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   transferred: PropTypes.number.isRequired,
   initTransfer: PropTypes.func.isRequired,
+  saveTemplate: PropTypes.func.isRequired,
   error: PropTypes.any
 };
 
