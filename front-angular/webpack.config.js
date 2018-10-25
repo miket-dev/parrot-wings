@@ -35,12 +35,11 @@ module.exports = {
         loader: 'file-loader?name=assets/[name].[hash].[ext]'
       },
       {
-        test: /\.scss$/,
+        test: /\.s?css$/,
         use: [
-          "text-loader",
+          "to-string-loader",
           "style-loader",
           "css-loader",
-          "postcss-loader",
           "sass-loader"
         ]
       }
