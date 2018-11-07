@@ -9,14 +9,16 @@ import { APP_ROUTING } from './app.routing';
 import { HomeComponent } from './route/home/home.component';
 import { HeaderComponent } from './header/header.component';
 import { AuthModule } from './auth/auth.module';
+import { ModuleRouting } from './auth/auth.routing';
 
 @NgModule({
     imports: [
-        BrowserModule,
+    BrowserModule,
         FormsModule,
         HttpModule,
-        AuthModule,
-        APP_ROUTING
+        APP_ROUTING,
+        ModuleRouting,
+        AuthModule
     ],
     declarations: [
         AppComponent,
