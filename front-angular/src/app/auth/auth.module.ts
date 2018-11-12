@@ -1,24 +1,12 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
-import { AuthComponent } from './auth.component';
-import { LoginComponent } from './login/login.component';
-import { ModuleRouting } from './auth.routing';
+import { NgModule } from "@angular/core";
+import { FormsModule } from "@angular/forms";
+import { LoginComponent } from "./login/login.component";
+import { CommonModule } from "@angular/common";
+import { AuthRoutingModule } from "./auth.routing";
+import { RegisterComponent } from "./register/register.component";
 
 @NgModule({
-    imports: [
-    BrowserModule,
-        FormsModule,
-        HttpModule,
-        ModuleRouting
-    ],
-    declarations: [
-        AuthComponent,
-        LoginComponent
-    ],
-    bootstrap: [
-        AuthComponent
-    ]
+  imports: [CommonModule, FormsModule, AuthRoutingModule],
+  declarations: [LoginComponent, RegisterComponent]
 })
 export class AuthModule {}

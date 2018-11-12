@@ -1,4 +1,4 @@
-import { CanActivate } from "@angular/router/src/utils/preactivation";
+import { CanActivate } from "@angular/router";
 import { Injectable } from '@angular/core';
 import {
   Router,
@@ -8,15 +8,19 @@ import {
 
 @Injectable()
 export class AuthGuard implements CanActivate {
-  path: ActivatedRouteSnapshot[];
-  route: ActivatedRouteSnapshot;
   constructor(private router: Router) {}
 
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): boolean {
-    this.router.navigate(["auth"]);
-    return false;
+    console.log("state", state.url);
+    if (state.url === "" || state.url.indexOf("home") > -1 )
+    {
+      this.router.navigate(["/login"]);
+      return false;
+    }
+
+    return true;
   }
 }
